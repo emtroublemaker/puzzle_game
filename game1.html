@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" id="site" class="nojs" style="touch-action: none">
+<head>
+
+  <title>Durga Maa Puzzle</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="jigsaw.css"/>
+  <style>
+      @font-face{
+            font-family: proximanova;
+            src: url(proximanova-reg-webfont.ttf) format("truetype");
+        }
+
+
+        @font-face{
+            font-family: proximanovabold;
+            src: url(proximanova-bold-webfont.ttf) format("truetype");
+        }
+
+      .d-none{
+            display:none !important;
+        }
+        .modal-backdrop{
+            width:100%;
+            height:100%;
+            position:fixed;
+            left:0;
+            top:0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:100;
+            background-color:rgba(0,0,0,0.4);
+        }
+        .modal-content{
+            width:95%;
+            max-width:400px;
+            height:auto;
+            background-color:white;
+            border-radius:8px;
+            padding:20px;
+            text-align:center;
+            justify-content:center;
+            font-size:16px;
+            font-family:proximanova;
+        }
+        .modal-button{
+            display:inline-block;
+            text-decoration:none;
+            padding:10px 25px;
+            border-radius:4px;
+            background-color:#DC143C;
+            color:white;
+        }
+
+        .play-backdrop{
+            width:100%;
+            height:100%;
+            position:fixed;
+            left:0;
+            top:0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:100;
+            background-color:rgba(0,0,0,0.4);
+        }
+        .play-content{
+            width:95%;
+            max-width:400px;
+            height:auto;
+            background-color:white;
+            border-radius:8px;
+            padding:20px;
+            text-align:center;
+            justify-content:center;
+            font-size:16px;
+            font-family:proximanova;
+        }
+        .play-button{
+            display:inline-block;
+            text-decoration:none;
+            padding:10px 25px;
+            border:none;
+            cursor:pointer;
+            border-radius:4px;
+            background-color:#DC143C;
+            color:white;
+        }
+
+  </style>
+</head>
+
+<body id="body">
+    <audio id="bg_music" loop>
+      <source src="bgmusic.mpeg" type="audio/mpeg">
+      <!--<source src="loop.m4a" type="audio/mpeg">-->
+    </audio>
+    <audio id="place_music" >
+      <source src="place.mp3" type="audio/mpeg">
+      <!--<source src="click.m4a" type="audio/mpeg">-->
+    </audio>
+    <audio id="end_music" >
+      <source src="end.wav" type="audio/wav">
+      <!--<source src="click.m4a" type="audio/mpeg">-->
+    </audio>
+  <div class="canvaswrapper" id="canvasparent">
+    <canvas id="canvas" class="canvas"></canvas>
+  </div>
+
+  <!--[if lt IE 9 ]>
+  <script>(function() {$('body').addClass('iex');})();</script>
+  <![endif]-->
+  <script src="deferred.js"></script>
+  <script src="main.js"></script>
+
+  <div class="modal-backdrop d-none">
+    <div class="modal-content">
+        <h2>Congratulations!!</h2>
+        <p style="margin:1em;">
+            You have successfully completed the puzzle.<br>
+        </p>
+        <a href="game2.html" class="modal-button">Play Next Game</a>
+    </div>
+  </div>
+
+  <div class="play-backdrop">
+    <div class="play-content">
+        <p style="margin:1em;">
+            Arrange puzzle pieces to fix Durga Maa Face.
+        </p>
+        <button class="play-button">Start Game</button>
+    </div>
+  </div>
+
+
+</body>
+
+<script>
+    setInterval(function(){
+        //var gamestate = localStorage.getItem("gameState");
+        var time_left = localStorage.getItem("time-remaining");
+        if(time_left && time_left<="0")
+        {
+            localStorage.setItem("gameState","lost");
+            if(!alert('Sorry! Time is up. Better luck next time!')){window.location.reload();}
+        }
+        if(gamestate!="lost"){
+            if(!time_left){
+                localStorage.setItem("time-remaining",120);
+            } else{
+                if(time_left<="0"){
+                    localStorage.setItem("gameState","lost");
+                    if(!alert('Sorry! Time is up. Better luck next time!')){window.location.reload();}
+                }
+            }
+        }
+    },500);
+    
+    var playButton = document.querySelector('.play-button');
+    playButton.addEventListener('click', function(){
+        //document.getElementById("bg_music").play();
+        document.querySelector('.play-backdrop').classList.add('d-none');
+        //var gamestate = localStorage.getItem("gameState");
+        var time_left = localStorage.getItem("time-remaining");
+        if(!gamestate || gamestate == "play"){
+            if(!time_left){
+                localStorage.setItem("time-remaining",120);
+            }
+            document.querySelector('.play-backdrop').classList.add('d-none');
+            var bg_music = document.getElementById("bg_music");
+            bg_music.volume=0.1;
+            bg_music.play();
+            window.setInterval(function(){
+                var time = parseInt(localStorage.getItem("time-remaining"));
+                time = time-1;
+                localStorage.setItem("time-remaining",120);
+                //console.log("time remaining is: "+localStorage.getItem("time-remaining"));
+            },1000);
+        } else if(gamestate == "game1"){
+            alert("You have already played this game. Now proceed to next one.");
+            window.location.href="game2.html";
+        } else if(gamestate == "game2"){
+            alert('Thank you for engaging in both the games, please stand on "stand here" indicator to see the glimpse of Durga Maa and take her blessings!');
+        } else if(gamestate == "lost"){
+            alert("Sorry! You have lost this time. Better luck next time.");
+        }
+    });
+</script>
+</html>
