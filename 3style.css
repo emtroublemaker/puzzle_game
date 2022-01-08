@@ -1,0 +1,133 @@
+main{
+    max-width: 650px;
+    height: 100vh;
+    background-color: black;
+    background-size: 100% 100%;
+    margin: auto;
+}
+
+.center {
+   
+    padding-left: 75px;
+    width: 75%;
+    margin-top: -8.5em;
+}
+.text-block{
+    position:absolute;
+    top: 100px;
+    padding-left: 140px;
+}
+.line{
+    font-size: 30px;
+}
+.button {
+    display: block;
+    margin-top: -30em;
+    padding-left: 180px;
+    width: 45%;
+}
+.text {
+    position: absolute;
+    top: 380px;
+    padding-left: 70px;
+
+}
+header img{
+    width: 100px;
+    height: 100px;
+    padding-left: 500px;
+    
+}
+.img{
+    display: block;
+    margin-top: -6em;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
+}
+.img img{
+    width: 100%;
+    padding-left: 153px;
+}
+.img p{
+    margin-top: -20em;
+    padding-left: 210px;
+    font-size: 20px;
+    display: contents;
+   
+}
+footer p{
+    margin-top: -6.5em;
+    padding-left: 250px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+@media only screen and (max-device-width: 480px) {
+    main{
+        max-width: max-content;
+        height: 100vh;
+        background-color: black;
+        background-size: 100% 100%;
+        margin: auto;
+    }
+    header img{
+        width: 150px;
+        height: 150px;
+        padding-left: 800px;
+        margin-top: 50px;
+        
+    }
+    
+.center {
+   
+    padding-left: 100px;
+    width: 80%;
+    margin-top: -5em;
+}
+.text-block{
+    position:absolute;
+    top: 360px;
+    padding-left: 172px;
+}
+.line{
+    font-size: 52px;
+}
+.button {
+    display: block;
+    margin-top: -35em;
+    padding-left: 265px;
+    width: 45%;
+}
+.text {
+    position: absolute;
+    top: 950px;
+    padding-left: 68px;
+    font-size: 30px;
+
+}
+.img{
+    display: block;
+    margin-top: -6em;
+    padding-left: 65px;
+    padding-right: 10px;
+    width: 50%;
+}
+.img img{
+    width: 120%;
+    padding-left: 122px;
+}
+.img p{
+    margin-top: -20em;
+    padding-left: 210px;
+    font-size: 20px;
+    display: contents;
+   
+}
+footer p{
+    margin-top: -5em;
+    padding-left: 325px;
+    font-size: 35px;
+    font-weight: bold;
+
+}
